@@ -64,12 +64,17 @@ public class  AdminController {
 
     @GetMapping("student/crud")
     public String studentCrud(){
-        return "admin/studentCrud";
+        return "admin/studentsList";
     }
 
     @GetMapping("teacher/crud")
     public String teachercrud(){
         return "admin/teacherCrud";
+    }
+
+    @GetMapping("showStudents")
+    public String showStudents(){
+        return "admin/showStudents";
     }
 
     @GetMapping("email")
