@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/admin/sheduling/")
+@RequestMapping("/api/admin/scheduling/")
 public class Sheduling {
 
     @Autowired
@@ -34,7 +34,7 @@ public class Sheduling {
         model.addAttribute("user",user);
         model.addAttribute("users", users);
         model.addAttribute("sheduleList",shedulesList);
-        return "admin/sheduling/daily";
+        return "admin/scheduling/daily";
     }
     @PostMapping("daily")
     public String saveShedule(@ModelAttribute Shedules shedules,Model model){
