@@ -1,5 +1,6 @@
 package lk.cmb.ucsc.drivingschool.controller.Admin;
 
+
 import lk.cmb.ucsc.drivingschool.model.Email;
 import lk.cmb.ucsc.drivingschool.model.User;
 import lk.cmb.ucsc.drivingschool.service.MailSenderService;
@@ -78,5 +79,7 @@ public class  AdminController {
         senderService.sendSimpleMail(email);
         return "admin/admin";
     }
+
+
 
 }

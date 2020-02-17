@@ -13,15 +13,10 @@ public class AttendenceService {
     @Autowired
     private AttendenceRepo attendenceRepo;
 
-    public void createAttendence(Attendence attendence){
+    public void addAttendence(Attendence attendence) {
         attendenceRepo.save(attendence);
     }
-
-    List<Attendence> listAll() {
-        return null;
-    }
-
-    public Attendence getById(String id) {
-        return null;
+    public List<Attendence> findAll(){
+        return attendenceRepo.findAll();
     }
 }
