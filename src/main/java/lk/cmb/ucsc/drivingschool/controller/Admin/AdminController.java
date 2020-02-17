@@ -31,13 +31,13 @@ public class  AdminController {
     @GetMapping("signup/student")
     public String signupStudent(Model model){
         model.addAttribute("user",new User());
-        return "signupStudent";
+        return "admin/Registration/RegisterStudent";
     }
 
     @GetMapping("signup/teacher")
     public String signupTeacher(Model model) {
         model.addAttribute("user",new User());
-        return "admin/signupStudent";
+        return "admin/Registration/RegisterTeacher";
     }
 
    @PostMapping("signup/student")
