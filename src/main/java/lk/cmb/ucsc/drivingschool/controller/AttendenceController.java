@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/teacher/attendence")
+@RequestMapping("/api/teacher/attendence/")
 public class AttendenceController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class AttendenceController {
         List<Attendence> attendenceList=new ArrayList<>();
         attendenceList=attendenceService.findAll();
         model.addAttribute("attendenceList",attendenceList);
-        model.addAttribute("attendenceList", new Attendence());
+        model.addAttribute("attendence", new Attendence());
         return "teacher/Attendence/attendence";
     }
 
