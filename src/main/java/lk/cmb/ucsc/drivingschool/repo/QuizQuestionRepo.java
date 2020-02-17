@@ -11,4 +11,3 @@ public interface QuizQuestionRepo extends MongoRepository<QuizQuestion,Long> {
     public QuizQuestion findById(String id);
     public QuizQuestion findTopByOrderByIdDesc();
 }
-

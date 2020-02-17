@@ -285,11 +285,11 @@
                         <td class="a-center ">
                             <input type="checkbox" class="flat" name="table_records">
                         </td>
-                        <td class=" "th:text="${vehicleList.id}"></td>
-                        <td class=" " th:text="${vehicleList.make}" ><i class="success fa fa-long-arrow-up"></i></td>
-                        <td class=" " th:text="${vehicleList.model}"> L</td>
-                        <td class=" " th:text="${vehicleList.year}"></td>
-
+                        <td class=" "th:text="${sheduleList.date}"></td>
+                        <td class=" " th:text="${sheduleList.time}" ><i class="success fa fa-long-arrow-up"></i></td>
+                        <td class=" " th:text="${sheduleList.student}"> L</td>
+                        <td class=" " th:text="${sheduleList.teacher}"></td>
+                        <td class="a-right a-right ">KM -3729</td>
                         </td>
                     </tr>
 
@@ -333,13 +333,13 @@
                                 </div>
                                 <div class="x_content">
                                     <br />
-                                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="#" th:action="@{/api/admin/vehicle/add}" th:object="${vehicle}" method="post">
+                                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="#" th:action="@{/api/admin/sheduling/daily}" th:object="${vehicle}" method="post">
 
                                         <div class="item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Date <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 ">
-                                                <input type="text" id="first-name" th:field="*{id}" required="required" class="form-control ">
+                                                <input type="Date" id="first-name" th:field="*{id}" required="required" class="form-control ">
                                             </div>
                                         </div>
                                         <div class="item form-group">
