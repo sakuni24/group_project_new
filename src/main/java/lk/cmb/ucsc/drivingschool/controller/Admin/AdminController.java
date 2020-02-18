@@ -1,5 +1,6 @@
 package lk.cmb.ucsc.drivingschool.controller.Admin;
 
+
 import lk.cmb.ucsc.drivingschool.model.Email;
 import lk.cmb.ucsc.drivingschool.model.User;
 import lk.cmb.ucsc.drivingschool.service.MailSenderService;
@@ -31,13 +32,13 @@ public class  AdminController {
     @GetMapping("signup/student")
     public String signupStudent(Model model){
         model.addAttribute("user",new User());
-        return "signupStudent";
+        return "admin/Registration/RegisterStudent";
     }
 
     @GetMapping("signup/teacher")
     public String signupTeacher(Model model) {
         model.addAttribute("user",new User());
-        return "admin/signupStudent";
+        return "admin/Registration/RegisterTeacher";
     }
 
    @PostMapping("signup/student")
@@ -64,12 +65,17 @@ public class  AdminController {
 
     @GetMapping("student/crud")
     public String studentCrud(){
-        return "admin/studentCrud";
+        return "admin/studentsList";
     }
 
     @GetMapping("teacher/crud")
     public String teachercrud(){
         return "admin/teacherCrud";
+    }
+
+    @GetMapping("showStudents")
+    public String showStudents(){
+        return "admin/showStudents";
     }
 
     @GetMapping("email")
@@ -78,5 +84,7 @@ public class  AdminController {
         senderService.sendSimpleMail(email);
         return "admin/admin";
     }
+
+
 
 }

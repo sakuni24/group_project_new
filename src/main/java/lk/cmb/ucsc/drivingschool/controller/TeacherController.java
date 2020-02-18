@@ -16,6 +16,7 @@ import javax.validation.Valid;
 
 
 @Controller
+
 public class TeacherController {
 
 
@@ -35,9 +36,9 @@ public class TeacherController {
         return "teacher/profile";
     }
 
-    @RequestMapping("/api/lession.html")
-    public String lession(){
-        return "teacher/lession";
+    @RequestMapping("/api/attendence.html")
+    public String attendence(){
+        return "teacher/attendence";
     }
 
     @RequestMapping("/api/vehicle.html")
