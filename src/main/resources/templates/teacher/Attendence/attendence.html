@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -18,12 +18,14 @@
     <!-- bootstrap-wysiwyg -->
     <link href="../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
 
-    <!-- FullCalendar -->
-    <link href="../vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
-    <link href="../vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
-
     <!-- Custom styling plus plugins -->
     <link href="/css/custom.min.css" rel="stylesheet">
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <link href="../../static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
 </head>
 
 <body class="nav-md">
@@ -32,7 +34,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Sourthen learnears!</span></a>
+                    <a href="../index.html" class="site_title"><i class="fa fa-paw"></i> <span>Sourthen learnears!</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -57,11 +59,10 @@
                         <h3>General</h3>
                         <ul class="nav side-menu">
 
-                            <li><a href="mystudent.html"><i class="fa fa-users"></i>My Students</a></li>
-                            <li><a href="vehicle.html"><i class="fa fa-clone"></i>My Vehicles</a></li>
-                            <li><a href="lession.html"><i class="fa fa-edit"></i>Lessions</a></li>
-                            <li><a href="rating.html"><i class="fa fa-bar-chart-o"></i>Rating</a></li>
-                            <li><a href="list.html"><i class="fa fa-desktop"></i>Reviews</a></li>
+                            <li><a href="../mystudent.html"><i class="fa fa-users"></i>My Students</a></li>
+                            <li><a href="../vehicle.html"><i class="fa fa-clone"></i>My Vehicles</a></li>
+                            <li><a href="../attendence.html"><i class="fa fa-edit"></i>Attendence</a></li>
+                            <li><a href="../list.html"><i class="fa fa-desktop"></i>Reviews</a></li>
 
                         </ul>
                     </div>
@@ -84,7 +85,7 @@
                                 <img src="/images/img.jpg" alt="">Trainer
                             </a>
                             <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item"  href="profile.html"> Profile</a>
+                                <a class="dropdown-item"  href="../profile.html"> Profile</a>
                                 <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                             </div>
                         </li>
@@ -96,14 +97,52 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
+        <div class="table-responsive">
+            <table class="table table-striped jambo_table bulk_action">
+                <thead>
+                <tr class="headings">
+                    <th>
+                        <input type="checkbox" id="check-all" class="flat">
+                    </th>
+                    <th class="column-title">Id </th>
+                    <th class="column-title">Name </th>
+                    <th class="column-title">Date </th>
+                    <th class="column-title">Attendence </th>
+                    </th>
+                    <th class="bulk-actions" colspan="7">
+                        <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="attendenceList : ${attendenceList}" class="even pointer">
+                    <td class="a-center ">
+                        <input type="checkbox" class="flat" name="table_records">
+                    </td>
+                    <td class=" "th:text="${attendenceList.id}"></td>
+                    <td class=" " th:text="${attendenceList.name}" ><i class="success fa fa-long-arrow-up"></i></td>
+                    <td class=" " th:text="${attendenceList.date}"></td>
+                    <td class=" " th:text="${attendenceList.attend}"></td>
+
+                    </td>
+                </tr>
+
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="right_col" role="main">
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Calendar <small>Click to add/edit events</small></h3>
+                        <h3>Attendence Details</h3>
                     </div>
 
                     <div class="title_right">
-                        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                        <div class="col-md-5 col-sm-5  form-group pull-right top_search">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search for...">
                                 <span class="input-group-btn">
@@ -113,14 +152,12 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="clearfix"></div>
-
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-sm-12 ">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Calendar Events <small>lessions</small></h2>
+                                <h2><small></small></h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -130,9 +167,48 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
+                                <br />
+                                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="#" th:action="@{/api/teacher/attendence/add}" th:object="${attendence}" method="post">
 
-                                <div id='calendar'></div>
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Id <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input type="text" id="first-name" th:field="*{id}" required="required" class="form-control ">
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Name <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input type="text" id="last-name" th:field="*{name}" name="last-name" required="required" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label for="date" class="col-form-label col-md-3 col-sm-3 label-align">Date</label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input type="text" id="date" th:field="*{date}" name="date" required="required" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label for="attend" class="col-form-label col-md-3 col-sm-3 label-align">Attendence</label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input type="text" id="attend" th:field="*{attend}" name="attend" required="required" class="form-control">
+                                        </div>
+                                    </div>
 
+
+
+                                    <div class="ln_solid"></div>
+                                    <div class="item form-group">
+                                        <div class="col-md-6 col-sm-6 offset-md-3">
+                                            <button class="btn btn-primary" type="button">Cancel</button>
+                                            <button class="btn btn-primary" type="reset">Reset</button>
+                                            <button type="submit" class="btn btn-success">Submit</button>
+                                        </div>
+                                    </div>
+
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -140,81 +216,12 @@
             </div>
         </div>
 
-        <!-- calendar modal -->
-        <div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
+    </div>
 
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">New Calendar Entry</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div id="testmodal" style="padding: 5px 20px;">
-                            <form id="antoform" class="form-horizontal calender" role="form">
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Title</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="title" name="title">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Description</label>
-                                    <div class="col-sm-9">
-                                        <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary antosubmit">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel2">Edit Calendar Entry</h4>
-                    </div>
-                    <div class="modal-body">
-
-                        <div id="testmodal2" style="padding: 5px 20px;">
-                            <form id="antoform2" class="form-horizontal calender" role="form">
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Title</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="title2" name="title2">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Description</label>
-                                    <div class="col-sm-9">
-                                        <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary antosubmit2">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
-        <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
-        <!-- /calendar modal -->
 
         <!-- /page content -->
+
+
 
         <!-- Footer -->
         <footer class="footer text-center">
@@ -258,7 +265,7 @@
         <!-- /footer content -->
     </div>
 </div>
-
+</div>
 
 
 <!-- jQuery -->
@@ -273,10 +280,6 @@
 <script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
 <script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
 <script src="../vendors/google-code-prettify/src/prettify.js"></script>
-
-<!-- FullCalendar -->
-<script src="../vendors/moment/min/moment.min.js"></script>
-<script src="../vendors/fullcalendar/dist/fullcalendar.min.js"></script>
 
 <!-- Custom Theme Scripts -->
 <script src="/js/custom.min.js"></script>
